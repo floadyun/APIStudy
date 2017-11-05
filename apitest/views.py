@@ -72,6 +72,15 @@ def getUserById(request):
         return base.baseResponse(status.HTTP_200_OK, UserSerializer(user).data, '获取成功')
     except User.DoesNotExist:
         return base.baseResponse(status.HTTP_400_BAD_REQUEST, '', '用不存在')
+
+@api_view(['POST'])
+def uploadFile(request):
+    file = request.data.get('file')
+    if file.is_valid:
+        return base.baseResponse(status.HTTP_200_OK, '', '文件上传成功')
+    else:
+        return base.baseResponse(status.HTTP_400_BAD_REQUEST, '', '文件上传失败')
+
 #获取参数
 def get_parameter_dic(request, *args, **kwargs):
     if isinstance(request, Request) == False:
