@@ -16,10 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from apitest.urls import router
-from apitest.views import addUser, deleteUser
+from apitest.views import addUser, deleteUser, updateUser, getUserById
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'api/', include(router.urls)),
-    url(r'api/addUser/(?P<name>\d*)', addUser),
+    url(r'api/user/add', addUser),
+    url(r'api/user/delete', deleteUser),
+    url(r'api/user/update', updateUser),
+    url(r'api/user/get', getUserById),
 ]
